@@ -3,17 +3,16 @@
 let numberBip=18862002; // variable donde se guarda el numero
 
 function bipNumber(){
-    const link= fetch(`http://www.psep.cl/api/Bip.php?&numberBip=${numberBip}`)
+    const link=fetch(`http://www.psep.cl/api/Bip.php?&numberBip=${numberBip}`)
     .then(function(response){
         return response.json()
     })
     
     .then(function(data){ //usar object.keys?
         
-        const infoBip = Object.keys(link).map(i => link[i])
+        const infoBip = Object.entries(data) // se puede cambiar por object.keys o object.values 
         console.log(infoBip);
-
-          console.log(data);
+        console.log(data);
     })
   
     .catch(function(fail){
