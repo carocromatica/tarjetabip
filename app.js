@@ -2,7 +2,7 @@
 
 let numberBip=12844501; // variable donde se guarda el numero
 
-function bipNumber(){
+function infoBip(){
     fetch(`http://www.psep.cl/api/Bip.php?&numberBip=${numberBip}`)
     .then(function(response){
         return response.json()
@@ -10,27 +10,25 @@ function bipNumber(){
     
     .then(function(data){ //usar object.keys?
         
-        const infoBip = Object.values(data) // se puede cambiar por object.keys o object.values 
-        console.log(infoBip[0])
-        console.log(infoBip[1])
-        console.log(infoBip[2])
-        console.log(infoBip[3])
-
-        let bip1= infoBip[0];
-        document.getElementById("databip").innerHTML ='numero de bip '+ bip1;
-
-        let bip2= infoBip[1];
-        document.getElementById("databip1").innerHTML ='Status '+ bip2;
-
-        let bip3= infoBip[2];
-        document.getElementById("databip2").innerHTML ='saldo '+ bip3;
-
-        let bip4= infoBip[3];
-        document.getElementById("databip3").innerHTML ='fecha de carga '+ bip4;
+        const dataBip = Object.values(data) // se puede cambiar por object.keys o object.values 
        
+        console.log(dataBip[0])
+        console.log(dataBip[1])
+        console.log(dataBip[2])
+        console.log(dataBip[3])
 
-        console.log(infoBip);
-        console.log(data);
+        let numberBip= dataBip[0];
+        document.getElementById("databip").innerHTML ='numero de bip '+ numberBip;
+
+        let statusBip= dataBip[1];
+        document.getElementById("databip1").innerHTML ='Status '+ statusBip;
+
+        let amountBip= dataBip[2];
+        document.getElementById("databip2").innerHTML ='saldo '+ amountBip;
+
+        let dayBip= dataBip[3];
+        document.getElementById("databip3").innerHTML ='fecha de carga '+ dayBip;
+       
     })
   
     .catch(function(fail){
