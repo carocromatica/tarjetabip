@@ -1,6 +1,6 @@
-let saldoBip;
-let saldoFinal;
-
+let saldoBip; // será ingresado por el usuario
+let saldoFinal; // obvio :v
+let valorPasaje; // cuando el usuario selecciona segun horario
 
 window.onload = function getBip() {
 
@@ -56,26 +56,26 @@ window.onload = function getBip() {
             )*/
 
             .then( function horarios() {
-                let valorPasaje= document.getElementById("selector");
-                let i = valorPasaje.selectedIndex;
-                console.log(saldoFinal);
+                let pasaje= document.getElementById("selector").value;
+                console.log(pasaje);
 
-                if (i=[0]){
+                if (pasaje=="horario valle"){
                     valorPasaje=620;
                     saldoFinal=saldoBip-valorPasaje;
                     console.log(saldoFinal);
-                    document.getElementById("alerta").innerHTML = saldoFinal;
+                    document.getElementById("alerta").innerHTML = "tu saldo final es: $" + saldoFinal;
 
-                }else if (i=[1]){
+                }else if (pasaje =="horario normal"){
                     valorPasaje=680;
                     saldoFinal=saldoBip-valorPasaje;
                     console.log(saldoFinal);
-                    document.getElementById("alerta").innerHTML = saldoFinal;
-                } else if (i=[2]){
-                    valorPasaje=720;
+                    document.getElementById("alerta").innerHTML = "tu saldo final es: $" + saldoFinal;
+
+                } else if (pasaje=="horario punta"){
+                    valorPasaje=760;
                     saldoFinal=saldoBip-valorPasaje;
                     console.log(saldoFinal);
-                    document.getElementById("alerta").innerHTML = saldoFinal;
+                    document.getElementById("alerta").innerHTML = "tu saldo final es: $" + saldoFinal;
                 }
          
             }

@@ -11,6 +11,15 @@
 
     <input id="bipCard">
     <button type="submit" id="btn"> Agregar</button>
+    
+    <form>
+            <select id="selector" onchange="horarios()" >
+              <option>horario valle</option>
+              <option>horario normal</option>
+              <option>horario punta</option>
+            </select>
+          </form>
+
 
     
     <div id="databip"></div>
@@ -24,14 +33,7 @@
     <div id="saldo"></div>
 
     
-    <form>
-            <select id="selector">
-              <option>horario valle</option>
-              <option>horario normal</option>
-              <option>horario punta</option>
-            </select>
-          </form>
-
+  
   
 
     <script src="app.js"></script>
