@@ -1,22 +1,20 @@
-//let content= document.getElementById("contenedor")
 
-let numberBip=12844501; // variable donde se guarda el numero
+ window.onload = function() {
 
-function infoBip(){
+    document.getElementById("btn").onclick = function()
+     { let numberBip=document.getElementById("bipCard").value;
+    
+
+    
     fetch(`http://www.psep.cl/api/Bip.php?&numberBip=${numberBip}`)
     .then(function(response){
-        return response.json()
+        return response.json();
     })
     
     .then(function(data){ //usar object.keys?
         
         const dataBip = Object.values(data) // se puede cambiar por object.keys o object.values 
        
-        console.log(dataBip[0])
-        console.log(dataBip[1])
-        console.log(dataBip[2])
-        console.log(dataBip[3])
-
         let numberBip= dataBip[0];
         document.getElementById("databip").innerHTML ='numero de bip '+ numberBip;
 
@@ -34,8 +32,10 @@ function infoBip(){
     .catch(function(fail){
     console.log('fail',fail)
 
-    })
-    
-}
+    }) // fin fetch
 
-// función para convertir object en array
+
+    }}
+
+
+
