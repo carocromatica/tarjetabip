@@ -33,11 +33,15 @@ window.onload = function getBip() {
 
 
             .then (function calcularValorPasaje(){
-                if (saldoBip > 630){
-                    document.getElementById("alerta").innerHTML="suficiente saldo";
+                if (saldoBip > 720){
+                    document.getElementById("alerta").innerHTML="saldo para horario punta";
                     console.log(saldoBip);
-                }else{
-                    document.getElementById("alerta").innerHTML="falta saldo";
+                }else if (saldoBip >680){
+                    document.getElementById("alerta").innerHTML="saldo para horario normal";
+                } else if (saldoBip>630){
+                    document.getElementById("alerta").innerHTML="saldo para horario valle"
+                }else if (saldoBip < 630){
+                    document.getElementById("alerta").innerHTML="saldo insuficiente";
                 }
             
             }
