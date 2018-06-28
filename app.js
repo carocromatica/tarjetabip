@@ -4,10 +4,22 @@ let valorPasaje; // cuando el usuario selecciona segun horario
 let numberBip; // numero de serie ingresado por el usuario
 let serieBip; // numero de serie bip en selector
 
+
+// numeros series bip de prueba : 18757476, 15487695 , 
+
 window.onload = function getBip() {
 
     document.getElementById("btn").onclick = function () { // cuando se hace click en el boton, despliega toda la info que viene a continuación
     
+    function desactivar(){ // tratando de hacer funcion para desactivar select si input està activo
+    if ( document.getElementById("bipcard").addEventListener(keypress)){
+        document.getElementById("selectorBip").disable=true;
+
+    }
+
+    }
+        
+
     if (numberBip = document.getElementById("bipCard").value){
         console.log(numberBip);
 
