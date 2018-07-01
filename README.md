@@ -15,7 +15,7 @@ Si la conexión falla sale un mensaje que saldo no dispobible :(
 Todavía estoy tratando de hacer los disable/enable de input y selector.
 
 ### version 0.3
-01/07/2018 00:38hrs 
+01/07/2018 00:38hrs.   
 Enable/disable del input y selector funcionando. 
 Tuve que hacer un git pull --rebase, no sé porqué, pero funcionó al menos :)
 
