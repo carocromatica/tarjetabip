@@ -9,10 +9,23 @@
 <body>
 
 
-    <input id="bipCard">
+   ingresa tu numero de bip <input id="bipCard" onkeypress="disableSelector()">
+
+<p></p>
+    
+
+   <form>
+        o selecciona una de tus series guardadas
+        <select id="selectorBip" onclick="enableSelector()">
+          <option>--</option>
+          <option>12457897</option>
+          <option>12659874</option>
+        </select>
+      </form>
+    </br>
     
     
-    <form>
+    <form>ingresa horario de tu viaje
             <select id="selector" onchange="horarios()" >
               <option>horario valle</option>
               <option>horario normal</option>
@@ -20,17 +33,12 @@
             </select>
           </form>
 
-
+        </br>
+    
              
-    <form>
-        <select id="selectorBip" >
-          <option>18862002</option>
-          <option>12457897</option>
-          <option>12659874</option>
-        </select>
-      </form>
+   
 
-          <button type="submit" id="btn"> Agregar</button>
+          <button type="submit" id="btn"> calcular</button>
     
     <div id="databip"></div>
     <div id="databip1"></div>
@@ -43,7 +51,7 @@
     <div id="saldo"></div>
 
     
-  
+   <p>// numeros series bip de prueba : 18757476, 15487695, 23568974, 12456387 </p> 
   
 
     <script src="app.js"></script>

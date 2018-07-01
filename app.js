@@ -5,50 +5,59 @@ let numberBip; // numero de serie ingresado por el usuario
 let serieBip; // numero de serie bip en selector
 
 
-// numeros series bip de prueba : 18757476, 15487695 , 
+function disableSelector() {
 
-window.onload = function getBip() {
+    if (document.getElementById("bipCard").onkeypress) {
+        document.getElementById("selectorBip").disabled = true;
 
-    document.getElementById("btn").onclick = function () { // cuando se hace click en el boton, despliega toda la info que viene a continuación
-    
-    function desactivar(){ // tratando de hacer funcion para desactivar select si input està activo
-    if ( document.getElementById("bipcard").addEventListener(keypress)){
-        document.getElementById("selectorBip").disable=true;
+    } 
 
-    }
+}
 
-    }
-        
+function enableSelector() {
 
-    if (numberBip = document.getElementById("bipCard").value){
-        console.log(numberBip);
+    if (document.getElementById("selectorBip").onclick) {
+        document.getElementById("bipCard").disabled = true;
 
-    } else{   
+    } 
 
-        numberBip = document.getElementById("selectorBip").value; // sacaremos el numero de bip desde un selector
-        serieBip=numberBip; // el valor del selector lo guardaremos en una nueva variable
-        console.log(serieBip);
+}
 
-        for( i= 0; i<serieBip.length; i++){
-            numberBip=serieBip;
 
-            console.log(serieBip+ " veamos que pasa")
-            console.log(numberBip+ " chan")
+
+
+
+    document.getElementById("btn").onclick = function boton() { // cuando se hace click en el boton, despliega toda la info que viene a continuación
+        // para ingresar bipnumber desde input o select
+
+
+        if (numberBip = document.getElementById("bipCard").value) {
+            console.log(numberBip); // verifica si carga el numero, solo para control interno
+
+        } else {
+            numberBip = document.getElementById("selectorBip").value; // sacaremos el numero de bip desde un selector
+            serieBip = numberBip; // el valor del selector lo guardaremos en una nueva variable
+            console.log(serieBip);
+
+            for (i = 0; i < serieBip.length; i++) { // recorre el selector segun el valor que se encuentre en [i] guardará el numero de serie
+                numberBip = serieBip;
+            }
 
         }
 
-    }
-    
 
-        fetch(`http://www.psep.cl/api/Bip.php?&numberBip=${numberBip}`)
+        //////////////////// despliegue de info ///////////////////////
+
+
+
+        fetch(`http://www.psep.cl/api/Bip.php?&numberBip=${numberBip}`) // fetch del infiernoooooooo dsadhgsadhsagfd!!!!
             .then(function (response) {
                 return response.json();
             })
-          
 
-            .then(function (data) { //usar object.keys?
+            .then(function (data) {
 
-                const dataBip = Object.values(data) // se puede cambiar por object.keys o object.values 
+                const dataBip = Object.values(data) // extrae la data de la api y me extrae solo los valores. 
 
                 let numberBip = dataBip[0];
                 document.getElementById("databip").innerHTML = 'numero de bip ' + numberBip;
@@ -65,34 +74,12 @@ window.onload = function getBip() {
 
             })
 
-
-            /* .then(function calcularValorPasaje() { // podría hacerlo con un case break :emoji pensativo:
-                 if (saldoBip > 720) {
-                     saldoFinal = saldoBip - 720;
-                     document.getElementById("alerta").innerHTML = "saldo para horario punta";
-                     document.getElementById("saldo").innerHTML = "tu saldo a final es" + saldoFinal;
- 
-                 } else if (saldoBip > 680) {
-                     document.getElementById("alerta").innerHTML = "saldo para horario normal";
-                     saldoFinal = saldoBip - 680;
-                     document.getElementById("saldo").innerHTML = "tu saldo a final es " + saldoFinal;
-                 } else if (saldoBip > 630) {
-                     document.getElementById("alerta").innerHTML = "saldo para horario valle"
-                     saldoFinal = saldoBip - 630;
-                     document.getElementById("saldo").innerHTML = "tu saldo a final es " + saldoFinal;
-                 } else if (saldoBip < 630) {
-                     document.getElementById("alerta").innerHTML = "saldo insuficiente";
-                 }
- 
-             }
- 
-             )*/
-
             .then(function horarios() { // función que determina valor final del saldo según horario escogido.
                 let pasaje = document.getElementById("selector").value;
-                console.log(pasaje);
 
-                if (saldoBip <= 619) {
+                console.log(pasaje); // para verificar valor escogido, para control interno
+
+                if (saldoBip <= 619) { // cuando no hay plata pal pasajeeeeeeeeeeee :al fiscalizador le gusta esto:
                     document.getElementById("alerta").innerHTML = "tu saldo final es: $" + saldoBip + " necesitas recargar";
                 }
 
@@ -118,20 +105,16 @@ window.onload = function getBip() {
 
             })
 
-            
-
             .catch(function (fail) {
-                console.log('fail', fail)
+                console.log('llame a su servicio técnico, lo están cagando con el servicio', fail)
+                document.getElementById("alerta").innerHTML = "saldo no disponible, disculpe las molestias :(";
 
             })
 
         // fin fetch
 
-
     } // fin llamada boton
-}// fin windows.onload
 
-// para mostrar saldo
 
 
 
