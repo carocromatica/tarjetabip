@@ -5,12 +5,23 @@ let numberBip; // numero de serie ingresado por el usuario
 let serieBip; // numero de serie bip en selector
 
 
+
+
+
+document.getElementById("btnsave").onclick = function guardar(){
+let saveNumber=document.getElementById("selectorBip");
+let option = document.createElement("option");
+option.text = document.getElementById("bipCard").value;
+saveNumber.add(option);
+
+}
+
+
 function disableSelector() {
 
     if (document.getElementById("bipCard").onkeypress) {
-        document.getElementById("selectorBip").disabled = true;
-
-    } 
+        document.getElementById("selectorBip").disabled = false;
+    }
 
 }
 
@@ -19,101 +30,99 @@ function enableSelector() {
     if (document.getElementById("selectorBip").onclick) {
         document.getElementById("bipCard").disabled = true;
 
-    } 
+    }
 
 }
 
 
+document.getElementById("btn").onclick = function calcular() { // cuando se hace click en el boton, despliega toda la info que viene a continuación
+    // para ingresar bipnumber desde input o select
 
 
+    if (numberBip = document.getElementById("bipCard").value) {
+        console.log(numberBip); // verifica si carga el numero, solo para control interno
 
-    document.getElementById("btn").onclick = function boton() { // cuando se hace click en el boton, despliega toda la info que viene a continuación
-        // para ingresar bipnumber desde input o select
+    } else {
+        numberBip = document.getElementById("selectorBip").value; // sacaremos el numero de bip desde un selector
+        serieBip = numberBip; // el valor del selector lo guardaremos en una nueva variable
+        console.log(serieBip);
 
-
-        if (numberBip = document.getElementById("bipCard").value) {
-            console.log(numberBip); // verifica si carga el numero, solo para control interno
-
-        } else {
-            numberBip = document.getElementById("selectorBip").value; // sacaremos el numero de bip desde un selector
-            serieBip = numberBip; // el valor del selector lo guardaremos en una nueva variable
-            console.log(serieBip);
-
-            for (i = 0; i < serieBip.length; i++) { // recorre el selector segun el valor que se encuentre en [i] guardará el numero de serie
-                numberBip = serieBip;
-            }
-
+        for (i = 0; i < serieBip.length; i++) { // recorre el selector segun el valor que se encuentre en [i] guardará el numero de serie
+            numberBip = serieBip;
         }
 
-
-        //////////////////// despliegue de info ///////////////////////
-
+    }
 
 
-        fetch(`http://www.psep.cl/api/Bip.php?&numberBip=${numberBip}`) // fetch del infiernoooooooo dsadhgsadhsagfd!!!!
-            .then(function (response) {
-                return response.json();
-            })
+    //////////////////// despliegue de info ///////////////////////
 
-            .then(function (data) {
 
-                const dataBip = Object.values(data) // extrae la data de la api y me extrae solo los valores. 
 
-                let numberBip = dataBip[0];
-                document.getElementById("databip").innerHTML = 'numero de bip ' + numberBip;
+    fetch(`http://www.psep.cl/api/Bip.php?&numberBip=${numberBip}`) // fetch del infiernoooooooo dsadhgsadhsagfd!!!!
+        .then(function (response) {
+            return response.json();
+        })
 
-                let statusBip = dataBip[1];
-                document.getElementById("databip1").innerHTML = 'Status ' + statusBip;
+        .then(function (data) {
 
-                let amountBip = dataBip[2];
-                document.getElementById("databip2").innerHTML = 'saldo ' + amountBip;
-                saldoBip = Number(amountBip.replace(/[$,.]+/g, "")); // tranforma bip a number para calcular saldo
+            const dataBip = Object.values(data) // extrae la data de la api y me extrae solo los valores. 
 
-                let dayBip = dataBip[3];
-                document.getElementById("databip3").innerHTML = 'fecha de carga ' + dayBip;
+            let numberBip = dataBip[0];
+            document.getElementById("databip").innerHTML = 'numero de bip ' + numberBip;
 
-            })
+            let statusBip = dataBip[1];
+            document.getElementById("databip1").innerHTML = 'Status ' + statusBip;
 
-            .then(function horarios() { // función que determina valor final del saldo según horario escogido.
-                let pasaje = document.getElementById("selector").value;
+            let amountBip = dataBip[2];
+            document.getElementById("databip2").innerHTML = 'saldo ' + amountBip;
+            saldoBip = Number(amountBip.replace(/[$,.]+/g, "")); // tranforma bip a number para calcular saldo
 
-                console.log(pasaje); // para verificar valor escogido, para control interno
+            let dayBip = dataBip[3];
+            document.getElementById("databip3").innerHTML = 'fecha de carga ' + dayBip;
 
-                if (saldoBip <= 619) { // cuando no hay plata pal pasajeeeeeeeeeeee :al fiscalizador le gusta esto:
-                    document.getElementById("alerta").innerHTML = "tu saldo final es: $" + saldoBip + " necesitas recargar";
-                }
+        })
 
-                else if (pasaje == "horario valle") {
-                    valorPasaje = 620;
-                    saldoFinal = saldoBip - valorPasaje;
-                    console.log(saldoFinal);
-                    document.getElementById("alerta").innerHTML = "tu saldo final es: $" + saldoFinal;
+        .then(function horarios() { // función que determina valor final del saldo según horario escogido.
+           
+            let pasaje = document.getElementById("selector").value;
 
-                } else if (pasaje == "horario normal") {
-                    valorPasaje = 680;
-                    saldoFinal = saldoBip - valorPasaje;
-                    console.log(saldoFinal);
-                    document.getElementById("alerta").innerHTML = "tu saldo final es: $" + saldoFinal;
+            console.log(pasaje); // para verificar valor escogido, para control interno
 
-                } else if (pasaje == "horario punta") {
-                    valorPasaje = 760;
-                    saldoFinal = saldoBip - valorPasaje;
-                    console.log(saldoFinal);
-                    document.getElementById("alerta").innerHTML = "tu saldo final es: $" + saldoFinal;
+            if (saldoBip <= 619) { // cuando no hay plata pal pasajeeeeeeeeeeee :al fiscalizador le gusta esto:
+                document.getElementById("alerta").innerHTML = "tu saldo final es: $" + saldoBip + " necesitas recargar";
+            }
 
-                }
+            else if (pasaje == "horario valle") {
+                valorPasaje = 620;
+                saldoFinal = saldoBip - valorPasaje;
+                console.log(saldoFinal);
+                document.getElementById("alerta").innerHTML = "tu saldo final es: $" + saldoFinal;
 
-            })
+            } else if (pasaje == "horario normal") {
+                valorPasaje = 680;
+                saldoFinal = saldoBip - valorPasaje;
+                console.log(saldoFinal);
+                document.getElementById("alerta").innerHTML = "tu saldo final es: $" + saldoFinal;
 
-            .catch(function (fail) {
-                console.log('llame a su servicio técnico, lo están cagando con el servicio', fail)
-                document.getElementById("alerta").innerHTML = "saldo no disponible, disculpe las molestias :(";
+            } else if (pasaje == "horario punta") {
+                valorPasaje = 760;
+                saldoFinal = saldoBip - valorPasaje;
+                console.log(saldoFinal);
+                document.getElementById("alerta").innerHTML = "tu saldo final es: $" + saldoFinal;
 
-            })
+            }
 
-        // fin fetch
+        })
 
-    } // fin llamada boton
+        .catch(function (fail) {
+            console.log('llame a su servicio técnico, lo están cagando con el servicio', fail)
+            document.getElementById("alerta").innerHTML = "saldo no disponible, disculpe las molestias :(";
+
+        })
+
+    // fin fetch
+
+} // fin llamada boton
 
 
 
