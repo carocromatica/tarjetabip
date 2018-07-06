@@ -19,5 +19,8 @@ Todavía estoy tratando de hacer los disable/enable de input y selector.
 Enable/disable del input y selector funcionando. 
 Tuve que hacer un git pull --rebase, no sé porqué, pero funcionó al menos :)
 
+### version 0.4
+se pueden agregar numeros al selector
+
 
 
