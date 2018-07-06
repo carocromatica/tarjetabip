@@ -5,14 +5,12 @@ let numberBip; // numero de serie ingresado por el usuario
 let serieBip; // numero de serie bip en selector
 
 
-
-
-
 document.getElementById("btnsave").onclick = function guardar(){
 let saveNumber=document.getElementById("selectorBip");
 let option = document.createElement("option");
 option.text = document.getElementById("bipCard").value;
 saveNumber.add(option);
+  
 
 }
 
