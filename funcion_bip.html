@@ -47,19 +47,21 @@
   </nav>
 
 
+  
+
   <div class="container">
     <div class="row">
       <div class="col s12 offset-m4 m4">
 
         ingresa tu numero de bip
-        <input id="bipCard" type="number" onkeypress="disableSelector()">
+        <input id="bipCard" type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
         <button type="submit" id="btnsave" class="amber darken-1 btn"> guardar</button>
         <p></p>
 
 
         <div class="input-field col s12">
           <form>
-            <select id="selectorBip" class="browser-default">
+            <select id="selectorBip" class="browser-default" onclick="disableInput()">
               <option value="" disabled selected >Elige una opción</option>
               <option >12457897</option>
               <option >12659874</option>

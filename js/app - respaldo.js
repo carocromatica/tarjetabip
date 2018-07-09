@@ -5,56 +5,38 @@ let numberBip; // numero de serie ingresado por el usuario
 let serieBip; // numero de serie bip en selector
 
 
-document.getElementById("btnsave").onclick = function guardar(){
+// disableInput funciona
+function disableInput() { 
+    if (document.getElementById("selectorBip").onclick) {
+        document.getElementById("bipCard").disabled = true;
+    }
+}
+
+// inicio funcion GUARDAR NUMERO EN SELECTOR
+/*document.getElementById("btnsave").onclick = function guardar(){
 let saveNumber=document.getElementById("selectorBip");
 let option = document.createElement("option");
 option.text = document.getElementById("bipCard").value;
-saveNumber.add(option);
-  
-
-}
-
-
-function disableSelector() {
-
-    if (document.getElementById("bipCard").onkeypress) {
-        document.getElementById("selectorBip").disabled = false;
-    }
-
-}
-
-function enableSelector() {
-
-    if (document.getElementById("selectorBip").onclick) {
-        document.getElementById("bipCard").disabled = true;
-
-    }
-
-}
-
+saveNumber.add(option);  
+}*/
 
 document.getElementById("btn").onclick = function calcular() { // cuando se hace click en el boton, despliega toda la info que viene a continuación
+    
     // para ingresar bipnumber desde input o select
-
-
     if (numberBip = document.getElementById("bipCard").value) {
         console.log(numberBip); // verifica si carga el numero, solo para control interno
 
     } else {
         numberBip = document.getElementById("selectorBip").value; // sacaremos el numero de bip desde un selector
         serieBip = numberBip; // el valor del selector lo guardaremos en una nueva variable
-        console.log(serieBip);
+        console.log(serieBip);// verifica si carga el numero, solo para control interno
 
         for (i = 0; i < serieBip.length; i++) { // recorre el selector segun el valor que se encuentre en [i] guardará el numero de serie
             numberBip = serieBip;
         }
-
     }
 
-
     //////////////////// despliegue de info ///////////////////////
-
-
 
     fetch(`http://www.psep.cl/api/Bip.php?&numberBip=${numberBip}`) // fetch del infiernoooooooo dsadhgsadhsagfd!!!!
         .then(function (response) {
